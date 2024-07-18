@@ -35,12 +35,14 @@ cmake_policy(VERSION 3.21)
 # Includes a bunch of basic flags and utilities shared across projects
 # See more at the github repository link below
 include(FetchContent)
+if(NOT TARGET ztd.cmake)
 FetchContent_Declare(ztd.cmake
-	GIT_REPOSITORY https://github.com/soasis/cmake
+	GIT_REPOSITORY https://github.com/frkami123/cmake
 	GIT_SHALLOW    ON
 	GIT_TAG        main)
 FetchContent_MakeAvailable(ztd.cmake)
 set(CMAKE_PROJECT_INCLUDE ${ZTD_CMAKE_PROJECT_PRELUDE})
+endif()
 
 # # Project declaration
 # informs about the project, gives a description, version and MOST IMPORTANTLY
@@ -130,40 +132,51 @@ option(ZTD_TEXT_BOOST.TEXT "Enable usage of Boost.Text benchmarks and examples" 
 
 # # Dependencies
 # ztd.idk
+
+if(NOT TARGET ztd.idk)
 FetchContent_Declare(ztd.idk
-	GIT_REPOSITORY https://github.com/soasis/idk.git
+	GIT_REPOSITORY https://github.com/frkami123/idk.git
 	GIT_SHALLOW    ON
 	GIT_TAG        main)
 FetchContent_MakeAvailable(ztd.idk)
+endif()
 
+if(NOT TARGET ztd.static_containers)
 # ztd.static_containers
 FetchContent_Declare(ztd.static_containers
-	GIT_REPOSITORY https://github.com/soasis/static_containers.git
+	GIT_REPOSITORY https://github.com/frkami123/static_containers.git
 	GIT_SHALLOW    ON
 	GIT_TAG        main)
 FetchContent_MakeAvailable(ztd.static_containers)
+endif()
 
+if(NOT TARGET ztd.encoding_tables)
 # ztd.encoding_tables
 FetchContent_Declare(ztd.encoding_tables
-	GIT_REPOSITORY https://github.com/soasis/encoding_tables.git
+	GIT_REPOSITORY https://github.com/frkami123/encoding_tables.git
 	GIT_SHALLOW    ON
 	GIT_TAG        main)
 FetchContent_MakeAvailable(ztd.encoding_tables)
+endif()
 
+if(NOT TARGET ztd.cuneicode)
 # ztd.cuneicode
 set(ZTD_CUNEICODE_SIMDUTF_SHARED ${ZTD_TEXT_BENCHMARKS})
 FetchContent_Declare(ztd.cuneicode
-	GIT_REPOSITORY https://github.com/soasis/cuneicode.git
+	GIT_REPOSITORY https://github.com/frkami123/cuneicode.git
 	GIT_SHALLOW    ON
 	GIT_TAG        main)
 FetchContent_MakeAvailable(ztd.cuneicode)
+endif()
 
+if(NOT TARGET ztd.platform)
 # ztd.platform
 FetchContent_Declare(ztd.platform
-	GIT_REPOSITORY https://github.com/soasis/platform.git
+	GIT_REPOSITORY https://github.com/frkami123/platform.git
 	GIT_SHALLOW    ON
 	GIT_TAG        main)
 FetchContent_MakeAvailable(ztd.platform)
+endif()
 
 if (ZTD_TEXT_BENCHAMRKS OR ZTD_TEXT_GENERATE_SINGLE OR ZTD_TEXT_DOCUMENTATION)
 	find_package(Python3 REQUIRED COMPONENTS Interpreter)
